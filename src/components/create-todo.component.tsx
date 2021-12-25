@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import TodoItem from './model';
 
-interface State {
-  todo_description: string;
-  todo_responsible: string;
-  todo_priority: string;
-  todo_completed: boolean;
-}
-
-export default class CreateTodo extends Component<any, State> {
+export default class CreateTodo extends Component<any, TodoItem> {
   constructor(props: any) {
     super(props);
 
@@ -49,6 +44,16 @@ export default class CreateTodo extends Component<any, State> {
     console.log(`Todo Description: ${this.state.todo_description}`);
     console.log(`Todo Responsible: ${this.state.todo_responsible}`);
     console.log(`Todo Priority: ${this.state.todo_priority}`);
+
+    const newTodo: TodoItem = {
+      todo_description: this.state.todo_description,
+      todo_responsible: this.state.todo_responsible,
+      todo_priority: this.state.todo_priority,
+      todo_completed: this.state.todo_completed
+    }
+
+    axios.post('http://localhost:4000/todos/add', newTodo)
+      .then(res => console.log(res.data));
 
     this.setState({
       todo_description: '',
