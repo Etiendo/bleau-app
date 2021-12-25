@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import CreateTodo from "./components/create-todo.component";
 import EditTodo from "./components/edit-todo.component";
@@ -30,11 +30,9 @@ class App extends Component {
             </div>
           </nav>
           <br />
-          <Routes>
-            <Route path="/" element={<TodosList />} />
-            <Route path="/edit/:id" element={<EditTodo />} />
-            <Route path="/create" element={<CreateTodo />} />
-          </Routes>
+          <Route path="/" component={TodosList} />
+          <Route path="/edit/:id" component={EditTodo} />
+          <Route path="/create" component={CreateTodo} />
         </div>
       </Router>
     );
